@@ -1,16 +1,24 @@
-# This is a sample Python script.
+"""
+Найдите нужного пользователя по условиям в списке пользователей
+"""
+users = [
+    {"name": "Oleg", "age": 32},
+    {"name": "Sergey", "age": 24},
+    {"name": "Stanislav", "age": 15},
+    {"name": "Olga", "age": 45},
+    {"name": "Maria", "age": 18},
+]
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# TODO найдите всех пользователей младше 20 лет
+suitable_users = list()
+for user in users:
+    if user['age'] < 20:
+        suitable_users.append(user)
+assert suitable_users == [
+    {"name": "Stanislav", "age": 15},
+    {"name": "Maria", "age": 18},
+]
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

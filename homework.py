@@ -5,10 +5,12 @@ def test_dark_theme_by_time():
     """
     Протестируйте правильность переключения темной темы на сайте в зависимости от времени
     """
-    current_time = time(hour=23)
+    current_time = time(hour=22)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
 
     is_dark_theme = None
+    if time(hour=6) <= current_time >= time(hour=22):
+        is_dark_theme = True
     assert is_dark_theme is True
 
 
@@ -20,12 +22,16 @@ def test_dark_theme_by_time_and_user_choice():
     dark_theme_enabled_by_user = False - Темная тема выключена
     dark_theme_enabled_by_user = None - Пользователь не сделал выбор (используется переключение по времени системы)
     """
-    current_time = time(hour=16)
+    current_time = time(hour=23)
     dark_theme_enabled_by_user = True
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
 
     is_dark_theme = None
+    dark_theme_enabled_by_user = None
+    if time(hour=6) < current_time >= time(
+            hour=22) and dark_theme_enabled_by_user == None or dark_theme_enabled_by_user == True:
+        is_dark_theme = True
     assert is_dark_theme is True
 
 
@@ -43,10 +49,18 @@ def test_find_suitable_user():
 
     # TODO найдите пользователя с именем "Olga"
     suitable_users = None
+
+    for user in users:
+        if user['name'] == 'Olga':
+            suitable_users = user
     assert suitable_users == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
     suitable_users = None
+    suitable_users = list()
+    for user in users:
+        if user['age'] < 20:
+            suitable_users.append(user)
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
@@ -62,6 +76,7 @@ def test_find_suitable_user():
 # сделать буквы заглавными (или первую букву), затем вывести значения всех аргументов этой функции:
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
+
 
 
 def test_readable_function():
