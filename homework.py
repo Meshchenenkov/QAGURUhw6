@@ -1,5 +1,5 @@
 from datetime import time
-
+import pytest
 
 def test_dark_theme_by_time():
     """
@@ -77,7 +77,10 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
-
+def function_print(a, b):
+    functName = a
+    functArgs = b
+    #print(f'{funcName}.__name__')
 
 def test_readable_function():
     open_browser(browser_name="Chrome")
@@ -85,16 +88,19 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def open_browser(browser_name):
-    actual_result = None
+
+def test_open_browser(test_readable_function):
+    actual_result = function_print(open_browser)
+    print('#####################')
+    print(actual_result)
     assert actual_result == "Open Browser [Chrome]"
 
 
-def go_to_companyname_homepage(page_url):
-    actual_result = None
+def test_go_to_companyname_homepage(page_url):
+    actual_result = function_print(go_to_companyname_homepage)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
-def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
+def test_find_registration_button_on_login_page(page_url, button_text):
+    actual_result = function_print(find_registration_button_on_login_page)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
