@@ -77,11 +77,12 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
-def function_print(functName, *args):
-    funcNameArgs = functName.replace('_', ' ').title() + ' ' + str(list(args)).replace("'", "")
-    print('\n', end = '')
-    print(funcNameArgs, end = '')
-    return funcNameArgs
+def function_print(func_name, *args):
+    func_name_args = func_name.replace('_', ' ').title() + ' ' + str(list(args)).replace("'", "")
+    print('\n', end='')
+    print(func_name_args, end='')
+    return func_name_args
+
 
 def test_readable_function():
     open_browser(browser_name="Chrome")
