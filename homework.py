@@ -77,10 +77,11 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
-def function_print(a, b):
-    functName = a
-    functArgs = b
-    #print(f'{funcName}.__name__')
+def function_print(functName, *args):
+    funcNameArgs = functName.replace('_', ' ').title() + ' ' + str(list(args)).replace("'", "")
+    print('\n', end = '')
+    print(funcNameArgs, end = '')
+    return funcNameArgs
 
 def test_readable_function():
     open_browser(browser_name="Chrome")
@@ -88,19 +89,16 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-
-def test_open_browser(test_readable_function):
-    actual_result = function_print(open_browser)
-    print('#####################')
-    print(actual_result)
+def open_browser(browser_name):
+    actual_result = function_print(open_browser.__name__, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
-def test_go_to_companyname_homepage(page_url):
-    actual_result = function_print(go_to_companyname_homepage)
+def go_to_companyname_homepage(page_url):
+    actual_result = function_print(go_to_companyname_homepage.__name__, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
-def test_find_registration_button_on_login_page(page_url, button_text):
-    actual_result = function_print(find_registration_button_on_login_page)
+def find_registration_button_on_login_page(page_url, button_text):
+    actual_result = function_print(find_registration_button_on_login_page.__name__, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
